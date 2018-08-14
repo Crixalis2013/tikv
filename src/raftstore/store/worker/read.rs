@@ -94,7 +94,7 @@ impl ReadDelegate {
             if util::check_term(req, term).is_ok()
                 && lease.inspect(executor.snapshot_time()) == LeaseState::Valid
             {
-                if let Ok(mut resp) = executor.set_regon(&self.region).execute(req) {
+                if let Ok(mut resp) = executor.set_region(&self.region).execute(req) {
                     // Leader can read local if and only if it is in lease.
                     cmd_resp::bind_term(&mut resp.response, term);
                     return Some(resp);
